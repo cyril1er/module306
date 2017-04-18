@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DemoClass.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">module306</a> &gt; <a href="index.source.html" class="el_package">org.emiage.module306</a> &gt; <span class="el_source">DemoClass.java</span></div><h1>DemoClass.java</h1><pre class="source lang-java linenums">/*
+ * Class pour le module 306
+ * Activité 1
+ *
+ */
+package org.emiage.module306;
+
+import java.util.Random;
+
+/**
+ *
+ * @author cyril
+ */
+public final class DemoClass {
+
+    /**
+     * Constructeur privee pour empecher l'instantiation de classe.
+     */
+<span class="nc" id="L19">    private DemoClass() {</span>
+<span class="nc" id="L20">    }</span>
+
+    /**
+     * Generation d'un tableau d'entiers aleatoires.
+     *
+     * @param size taille du tableau
+     * @return un tableau d'entiers aleatoires
+     */
+    public static int[] randomTab(final int size) {
+<span class="fc" id="L29">        Random rand = new Random();</span>
+<span class="fc" id="L30">        int[] tab = new int[size];</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        for (int i = 0; i &lt; tab.length; i++) {</span>
+<span class="fc" id="L32">            tab[i] = rand.nextInt();</span>
+        }
+<span class="fc" id="L34">        return tab;</span>
+    }
+
+    /**
+     * Renvoie l'indice du plus grand élément du tableau.
+     *
+     * @param tab :: tableau dans lequel on effectue la recherche
+     * @param taille :: taille du tableau
+     * @return indiceMax :: indice le plus grand
+     *
+     * return int l'indice du plus grand élément*
+     */
+    private static int max(final int[] tab, final int taille) {
+
+        // on considère que le plus grand élément est le premier
+<span class="fc" id="L49">        int i = 0, indiceMax = 0;</span>
+
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        while (i &lt; taille) {</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            if (tab[i] &gt; tab[indiceMax]) {</span>
+<span class="fc" id="L53">                indiceMax = i;</span>
+            }
+<span class="fc" id="L55">            i++;</span>
+        }
+
+<span class="fc" id="L58">        return indiceMax;</span>
+
+    }
+
+    /**
+     * Échange deux éléments d'un tableau.
+     *
+     *
+     * @param tab tableau d'entiers à trier
+     * @param x : indice du premier élément
+     * @param y : indice du deuxième élément return void
+     *
+     */
+    private static void echanger(final int[]  tab, final int x, final int y) {
+
+        int tmp;
+
+<span class="fc" id="L75">        tmp = tab[x];</span>
+<span class="fc" id="L76">        tab[x] = tab[y];</span>
+<span class="fc" id="L77">        tab[y] = tmp;</span>
+
+<span class="fc" id="L79">    }</span>
+
+    /**
+     * Tri a bulles.
+     *
+     * @param tab tableau d'entiers à trier
+     *
+     *
+     */
+    public static void bubbleSort(final int[] tab) {
+
+<span class="fc" id="L90">        boolean sorted = false;</span>
+<span class="fc" id="L91">        int taille = tab.length;</span>
+
+<span class="pc bpc" id="L93" title="1 of 4 branches missed.">        if (tab == null || tab.length == 0) {</span>
+<span class="fc" id="L94">            return;</span>
+        }
+
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        while (!sorted) {</span>
+
+<span class="fc" id="L99">            sorted = true;</span>
+
+<span class="fc bfc" id="L101" title="All 2 branches covered.">            for (int i = 0; i &lt; taille - 1; i++) {</span>
+
+<span class="fc bfc" id="L103" title="All 2 branches covered.">                if (tab[i] &gt; tab[i + 1]) {</span>
+<span class="fc" id="L104">                    echanger(tab, i, i + 1);</span>
+<span class="fc" id="L105">                    sorted = false;</span>
+                }
+
+            }
+
+<span class="fc" id="L110">            taille--;</span>
+
+        }
+
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * Tri par selection.
+     *
+     * @param tab tableau d'entiers à trier return void
+     *
+     */
+    public static void selectSort(final int[] tab) {
+        int indiceMax;
+<span class="fc" id="L124">        int taille = tab.length;</span>
+
+<span class="pc bpc" id="L126" title="1 of 4 branches missed.">        if (tab == null || tab.length == 0) {</span>
+<span class="fc" id="L127">            return;</span>
+        }
+
+        // à chaque tour de boucle, on va déplacer le plus grand élément
+        // vers la fin du tableau, on diminue donc à chaque fois sa taille
+        // car le dernier élément est obligatoirement correctement
+        // placé (et n'a donc plus besoin d'être parcouru/déplacé)
+        // tant qu'il reste des éléments non triés
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        for (; taille &gt; 1; taille--) {</span>
+<span class="fc" id="L136">            indiceMax = max(tab, taille);</span>
+<span class="fc" id="L137">            echanger(tab, taille - 1, indiceMax); // on échange le dernier élément avec le plus grand</span>
+        }
+<span class="fc" id="L139">    }</span>
+
+    /**
+     * Tri rapide.
+     *
+     * @param tab tableau d'entiers à trier return void
+     */
+    public static void rapideSort(final int[] tab) {
+
+<span class="pc bpc" id="L148" title="1 of 4 branches missed.">        if (tab == null || tab.length == 0) {</span>
+<span class="fc" id="L149">            return;</span>
+        }
+
+<span class="fc" id="L152">        int length = tab.length;</span>
+<span class="fc" id="L153">        quickSort(tab, 0, length - 1);</span>
+<span class="fc" id="L154">    }</span>
+
+    /**
+     * Tri rapide de la sous partition.
+     *
+     * @param tab tableau d'entiers à trier
+     * @param lowerIndex indice de debut
+     * @param higherIndex indice de fin return void
+     */
+    private static void quickSort(final int[] tab, final int lowerIndex, final int higherIndex) {
+
+<span class="fc" id="L165">        int i = lowerIndex;</span>
+<span class="fc" id="L166">        int j = higherIndex;</span>
+        // calculate pivot number, I am taking pivot as middle index number
+<span class="fc" id="L168">        int pivot = tab[lowerIndex + (higherIndex - lowerIndex) / 2];</span>
+        // Divide into two arrays
+<span class="fc bfc" id="L170" title="All 2 branches covered.">        while (i &lt;= j) {</span>
+            /**
+             * In each iteration, we will identify a number from left side which
+             * is greater then the pivot value, and also we will identify a
+             * number from right side which is less then the pivot value. Once
+             * the search is done, then we exchange both numbers.
+             */
+<span class="fc bfc" id="L177" title="All 2 branches covered.">            while (tab[i] &lt; pivot) {</span>
+<span class="fc" id="L178">                i++;</span>
+            }
+<span class="fc bfc" id="L180" title="All 2 branches covered.">            while (tab[j] &gt; pivot) {</span>
+<span class="fc" id="L181">                j--;</span>
+            }
+<span class="fc bfc" id="L183" title="All 2 branches covered.">            if (i &lt;= j) {</span>
+<span class="fc" id="L184">                echanger(tab, i, j);</span>
+                //move index to next position on both sides
+<span class="fc" id="L186">                i++;</span>
+<span class="fc" id="L187">                j--;</span>
+            }
+        }
+        // call quickSort() method recursively
+<span class="fc bfc" id="L191" title="All 2 branches covered.">        if (lowerIndex &lt; j) {</span>
+<span class="fc" id="L192">            quickSort(tab, lowerIndex, j);</span>
+        }
+<span class="fc bfc" id="L194" title="All 2 branches covered.">        if (i &lt; higherIndex) {</span>
+<span class="fc" id="L195">            quickSort(tab, i, higherIndex);</span>
+        }
+<span class="fc" id="L197">    }</span>
+
+    /**
+     * Tri fusion.
+     *
+     * @param tab tableau d'entiers à trier
+     *
+     *
+     */
+    public static void mergeSort(final int[] tab) {
+<span class="fc" id="L207">        int longueur = tab.length;</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">        if (longueur &gt; 0) {</span>
+<span class="fc" id="L209">            mergeSortPartition(tab, 0, longueur - 1);</span>
+        }
+<span class="fc" id="L211">    }</span>
+
+    /**
+     * Tri fusion : paritionnement.
+     *
+     * @param tab tableau d'entiers à trier
+     * @param deb indice début
+     * @param fin indice fin
+     *
+     *
+     */
+
+    private static void mergeSortPartition(final int[] tab, final int deb, final int fin) {
+<span class="fc bfc" id="L224" title="All 2 branches covered.">        if (deb != fin) {</span>
+<span class="fc" id="L225">            int milieu = (fin + deb) / 2;</span>
+<span class="fc" id="L226">            mergeSortPartition(tab, deb, milieu);</span>
+<span class="fc" id="L227">            mergeSortPartition(tab, milieu + 1, fin);</span>
+<span class="fc" id="L228">            merge(tab, deb, milieu, fin);</span>
+        }
+<span class="fc" id="L230">    }</span>
+
+      /**
+     * Tri fusion : fusion finale .
+     *
+     * @param tab tableau d'entiers à trier
+     * @param deb1 indice début initial
+     * @param fin1 indice fin initial
+     * @param fin2 indice fin   final
+     *
+     */
+
+    private static void merge(final int[] tab, final int deb1, final int fin1, final int fin2) {
+<span class="fc" id="L243">        int deb2 = fin1 + 1;</span>
+
+        //on recopie les éléments du début du tableau
+<span class="fc" id="L246">        int[] table1  = new int[fin1 - deb1 + 1];</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">        for (int i = deb1; i &lt;= fin1; i++) {</span>
+<span class="fc" id="L248">            table1[i - deb1] = tab[i];</span>
+        }
+
+<span class="fc" id="L251">        int compt1 = deb1;</span>
+<span class="fc" id="L252">        int compt2 = deb2;</span>
+
+<span class="fc bfc" id="L254" title="All 2 branches covered.">        for (int i = deb1; i &lt;= fin2; i++) {</span>
+            //c'est que tous les éléments du premier tableau ont été utilisés
+            //tous les éléments ont donc été classés
+<span class="fc bfc" id="L257" title="All 2 branches covered.">            if (compt1 == deb2) { </span>
+<span class="fc" id="L258">                break; </span>
+            }            //c'est que tous les éléments du second tableau ont été utilisés
+<span class="fc bfc" id="L260" title="All 2 branches covered.">            else if (compt2 == (fin2 + 1))  {</span>
+<span class="fc" id="L261">                tab[i] = table1[compt1 - deb1]; //on ajoute les éléments restants du premier tableau</span>
+<span class="fc" id="L262">                compt1++;</span>
+<span class="fc bfc" id="L263" title="All 2 branches covered.">            } else if (table1[compt1 - deb1] &lt; tab[compt2]) {</span>
+<span class="fc" id="L264">                tab[i] = table1[compt1 - deb1]; //on ajoute un élément du premier tableau</span>
+<span class="fc" id="L265">                compt1++;</span>
+            } else {
+<span class="fc" id="L267">                tab[i] = tab[compt2]; //on ajoute un élément du second tableau</span>
+<span class="fc" id="L268">                compt2++;</span>
+            }
+        }
+<span class="fc" id="L271">    }</span>
+
+    /**
+     * Programme principal.
+     *
+     * @param args Arguments du programme: taille du tableau
+     */
+    public static void main(final String[] args) {
+<span class="nc" id="L279">        System.out.println(&quot;Generation du tableau&quot;);</span>
+        int[] tab ;        
+        int size;
+        
+<span class="nc bnc" id="L283" title="All 2 branches missed.">        if (args.length &gt; 0){</span>
+<span class="nc" id="L284">            size = Integer.valueOf(args[0]);        </span>
+        }
+        else {             
+<span class="nc" id="L287">              System.out.println(&quot;tableau de paramètres vide&quot;);  </span>
+<span class="nc" id="L288">             size = 100;</span>
+        }        
+        
+<span class="nc" id="L291">         tab=randomTab(size);        </span>
+<span class="nc" id="L292">         mergeSort(tab);</span>
+<span class="nc" id="L293">         tab=randomTab(size); </span>
+<span class="nc" id="L294">         rapideSort(tab);</span>
+<span class="nc" id="L295">         tab=randomTab(size); </span>
+<span class="nc" id="L296">         selectSort(tab);</span>
+<span class="nc" id="L297">         tab=randomTab(size); </span>
+<span class="nc" id="L298">         bubbleSort(tab);</span>
+         
+<span class="nc" id="L300">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
