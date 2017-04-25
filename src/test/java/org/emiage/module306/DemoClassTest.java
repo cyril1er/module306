@@ -194,8 +194,9 @@ public class DemoClassTest extends TestCase {
         int i;
         int[] tab1;
         long a, b , c ,d ,e ,f , g, h ;
-        int[] sizes = {100, 1000, 10000, 100000 , 200000};
+        int[] sizes = {100, 1000, 10000, 100000 };
 
+        
         for (i = 0; i < sizes.length; i++) {
             tab1 = DemoClass.randomTab(sizes[i]);
 

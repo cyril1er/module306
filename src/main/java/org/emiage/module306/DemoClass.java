@@ -31,7 +31,11 @@ public final class DemoClass {
         for (int i = 0; i < tab.length; i++) {
             tab[i] = rand.nextInt();
         }
+        
         return tab;
+        
+        
+        
     }
 
     /**
