@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.emiage.module306.DemoClassTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.408 sec
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.278 sec - in org.emiage.module306.DemoClassTest
